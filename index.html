@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-container": "#ccdcff",
+                "secondary-container": "#93f59c",
+                "primary-container": "#ffd93d",
+                "on-secondary-fixed": "#002107",
+                "on-primary-fixed": "#221b00",
+                "on-surface-variant": "#4d4633",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#d6e3ff",
+                "secondary-fixed-dim": "#7bdb85",
+                "on-primary-container": "#725e00",
+                "tertiary-fixed-dim": "#a9c7ff",
+                "surface-tint": "#705d00",
+                "secondary": "#006e29",
+                "primary": "#705d00",
+                "tertiary": "#005db8",
+                "background": "#f9f9f9",
+                "inverse-surface": "#2f3131",
+                "outline-variant": "#d0c6ad",
+                "on-error": "#ffffff",
+                "on-secondary-fixed-variant": "#00531d",
+                "secondary-fixed": "#96f89f",
+                "on-background": "#1a1c1c",
+                "surface": "#f9f9f9",
+                "surface-container": "#eeeeee",
+                "on-surface": "#1a1c1c",
+                "inverse-primary": "#e8c426",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-container": "#00732b",
+                "surface-bright": "#f9f9f9",
+                "surface-container-highest": "#e2e2e2",
+                "inverse-on-surface": "#f1f1f1",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-tertiary-fixed": "#001b3e",
+                "on-tertiary-container": "#005fbb",
+                "outline": "#7e7761",
+                "surface-container-low": "#f3f3f3",
+                "on-tertiary-fixed-variant": "#00468c",
+                "surface-variant": "#e2e2e2",
+                "surface-dim": "#dadada",
+                "surface-container-high": "#e8e8e8",
+                "primary-fixed-dim": "#e8c426",
+                "on-primary": "#ffffff",
+                "primary-fixed": "#ffe173",
+                "on-primary-fixed-variant": "#554500"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "xl": "80px",
+                "sm": "12px",
+                "md": "24px",
+                "margin-mobile": "16px",
+                "lg": "48px",
+                "base": "8px",
+                "xs": "4px",
+                "margin-desktop": "48px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "headline-md": [
+                        "Quicksand"
+                ],
+                "headline-xl": [
+                        "Quicksand"
+                ],
+                "label-caps": [
+                        "Quicksand"
+                ],
+                "display-lg-mobile": [
+                        "Quicksand"
+                ],
+                "body-lg": [
+                        "Quicksand"
+                ],
+                "display-lg": [
+                        "Quicksand"
+                ],
+                "display-xl": [
+                        "Quicksand"
+                ],
+                "body-sm": [
+                        "Quicksand"
+                ]
+        },
+        "fontSize": {
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-xl": [
+                        "28px",
+                        {
+                                "lineHeight": "36px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-caps": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-xl": [
+                        "64px",
+                        {
+                                "lineHeight": "72px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer utilities {
+    .listening {
+      @apply bg-error-container text-on-error-container animate-pulse;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .shortcut-tile span {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+</style>
+</head>
+<body class="font-body-sm text-on-background m-0 p-0 overflow-x-hidden min-h-screen relative">
+<div class="fixed inset-0 -z-10 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLu4zkn7Vv1umjDxscie0MpaLsply7EeL0XqpIrtZCfTZNwlyyomgksDdC22QyVmp3ZJBQlk1kWXyoY5UH39TWn761HzqRFflylMrUwboz7npnEM-GBjlrjnBxIrzwSBzUAKkuj0jkqeE9AlX0A42-0JFb2VFvrsh-cOne2NGuI_ZyxxT0Q9slHWh-B-veUeEl6r3ok24SR4V4RAMUINYLmWjIRc2c9i4tt2AskL1Rc1-SKaFEAGxjr0mvUe');"></div>
+<main class="app min-h-screen min-h-[100dvh] flex flex-col items-center justify-center p-4 md:p-8 xl:px-16 xl:py-10 bg-black/10 backdrop-blur-sm">
+<header class="topbar w-full max-w-5xl xl:max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-4 xl:gap-8 bg-surface-container-lowest/90 backdrop-blur-md p-4 md:p-6 xl:p-8 rounded-xl shadow-xl mb-6 md:mb-10 xl:mb-8">
+<div class="brand flex items-center gap-4 xl:gap-6">
+<div aria-hidden="true" class="avatar shrink-0">
+<img alt="Bé bự" class="w-16 h-16 md:w-24 md:h-24 xl:w-28 xl:h-28 object-cover rounded-full border-4 border-primary-container shadow-md" src="https://i.ibb.co/XZSR1YkW/2a-Obo-QXke8-E9-Lm3-Msag11-B85m-Sqtd-Szxk-Pdoi-Ghs.jpg"/>
+</div>
+<div>
+<h1 class="font-display-lg-mobile md:font-display-lg xl:font-display-lg text-display-lg-mobile md:text-display-lg xl:text-display-xl text-primary drop-shadow-sm">Tivi của bé bự</h1>
+<p class="subtitle font-body-sm md:font-body-lg xl:text-[22px] xl:leading-8 text-body-sm md:text-body-lg text-on-surface-variant">Bấm nhanh, nói nhanh, mở YouTube liền.</p>
+</div>
+</div>
+<div aria-label="Đồng hồ" class="clock flex flex-col items-center md:items-end bg-tertiary-container/80 px-6 py-3 xl:px-8 xl:py-4 rounded-xl shadow-inner min-w-[120px] xl:min-w-[160px]">
+<span class="time font-headline-md xl:font-headline-xl text-headline-md xl:text-headline-xl text-tertiary" id="time">--:--</span>
+<span class="date font-label-caps xl:text-base text-label-caps text-on-tertiary-container" id="date">Hôm nay</span>
+</div>
+</header>
+<section aria-label="Tìm kiếm YouTube" class="search-panel w-full max-w-4xl xl:max-w-[1400px] bg-surface-container-lowest/95 backdrop-blur-md p-6 md:p-8 xl:p-10 rounded-[2rem] md:rounded-xl shadow-2xl mb-8 md:mb-12 xl:mb-8 border-4 border-primary-container/30">
+<div class="search-row flex flex-col md:flex-row items-center gap-4 md:gap-6 xl:gap-8">
+<input aria-label="Từ khóa tìm kiếm YouTube" autocomplete="off" class="flex-1 w-full bg-surface-container-low border-4 border-outline-variant focus:border-primary-container focus:ring-0 rounded-full px-6 py-4 md:py-6 xl:py-7 xl:px-8 font-headline-md xl:font-headline-xl text-headline-md xl:text-headline-xl text-on-surface placeholder:text-outline shadow-inner transition-colors" id="query" inputmode="search" type="search" value="nhạc thiếu nhi vui nhộn"/>
+<div class="flex gap-4 xl:gap-6">
+<button aria-label="Tìm bằng giọng nói" class="big-button mic w-20 h-20 md:w-24 md:h-24 xl:w-32 xl:h-32 rounded-full bg-tertiary-container hover:bg-tertiary-fixed transition-transform transform hover:scale-105 active:scale-95 shadow-lg border-4 border-white flex items-center justify-center shrink-0" id="micButton" type="button">
+<svg aria-hidden="true" class="w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16 text-tertiary drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z"/>
+<path d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11Z"/>
+</svg>
+</button>
+<button aria-label="Tìm trên YouTube" class="big-button go w-20 h-20 md:w-24 md:h-24 xl:w-32 xl:h-32 rounded-full bg-secondary-container hover:bg-secondary-fixed transition-transform transform hover:scale-105 active:scale-95 shadow-lg border-4 border-white flex items-center justify-center shrink-0" id="goButton" type="button">
+<svg aria-hidden="true" class="w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16 text-secondary drop-shadow-sm translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+<path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l11.14-6.86c.65-.4.65-1.28 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z"/>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<section aria-label="Từ khóa nhanh" class="shortcuts w-full max-w-4xl xl:max-w-[1400px] grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 xl:gap-4">
+<button class="shortcut-tile tile frog bg-surface-container-lowest border-4 border-secondary-container hover:border-secondary hover:bg-secondary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="ech op thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-secondary">Ếch ộp</span>
+</button>
+<button class="shortcut-tile tile grasshopper bg-surface-container-lowest border-4 border-primary-container hover:border-primary hover:bg-primary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="con cao cao thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-primary">Con cào cào</span>
+</button>
+<button class="shortcut-tile tile dance bg-surface-container-lowest border-4 border-tertiary-container hover:border-tertiary hover:bg-tertiary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="chun chun nhac thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-tertiary">Chun chun</span>
+</button>
+<button class="shortcut-tile tile duck bg-surface-container-lowest border-4 border-error-container hover:border-error hover:bg-error-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="con vit nhac thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-error">Con vịt</span>
+</button>
+<button class="shortcut-tile tile super-simple bg-surface-container-lowest border-4 border-secondary-container hover:border-secondary hover:bg-secondary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="Super Simple Songs Kids Songs" type="button">
+<span class="font-headline-md text-headline-md text-secondary">Super Simple</span>
+</button>
+<button class="shortcut-tile tile noodle bg-surface-container-lowest border-4 border-primary-container hover:border-primary hover:bg-primary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="Noodle &amp; Pals" type="button">
+<span class="font-headline-md text-headline-md text-primary">Noodle &amp; Pals</span>
+</button>
+<button class="shortcut-tile tile bus bg-surface-container-lowest border-4 border-tertiary-container hover:border-tertiary hover:bg-tertiary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="wheels on the bus" type="button">
+<span class="font-headline-md text-headline-md text-tertiary">Wheels on the bus</span>
+</button>
+<button class="shortcut-tile tile car bg-surface-container-lowest border-4 border-error-container hover:border-error hover:bg-error-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="em tap lai o to thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-error">Em tập lái ô tô</span>
+</button>
+<button class="shortcut-tile tile mouse bg-surface-container-lowest border-4 border-secondary-container hover:border-secondary hover:bg-secondary-container/10 rounded-[2rem] xl:rounded-2xl p-6 xl:p-5 xl:min-h-[112px] flex items-center justify-center text-center transition-all transform hover:-translate-y-2 hover:shadow-xl active:translate-y-0 active:shadow-md" data-query="con chuot nhat thieu nhi" type="button">
+<span class="font-headline-md text-headline-md text-secondary">Con chuột nhắt</span>
+</button>
+</section>
+</main>
+<script>
+    const queryInput = document.querySelector("#query");
+    const goButton = document.querySelector("#goButton");
+    const micButton = document.querySelector("#micButton");
+    const timeText = document.querySelector("#time");
+    const dateText = document.querySelector("#date");
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = null;
+    let listening = false;
+
+    function normalizeVietnamese(text) {
+      return text
+        .trim()
+        .replace(/\s+/g, " ")
+        .replace(/^ếch\s+ộp$/i, "ech op thieu nhi")
+        .replace(/^ech\s+op$/i, "ech op thieu nhi")
+        .replace(/^con\s+cào\s+cào$/i, "con cao cao thieu nhi")
+        .replace(/^con\s+cao\s+cao$/i, "con cao cao thieu nhi")
+        .replace(/^chun\s+chun$/i, "chun chun nhac thieu nhi")
+        .replace(/^con\s+vịt$/i, "con vit nhac thieu nhi")
+        .replace(/^con\s+vit$/i, "con vit nhac thieu nhi")
+        .replace(/^em\s+tập\s+lái\s+ô\s+tô$/i, "em tap lai o to thieu nhi")
+        .replace(/^em\s+tap\s+lai\s+o\s+to$/i, "em tap lai o to thieu nhi")
+        .replace(/^con\s+chuột\s+nhắt$/i, "con chuot nhat thieu nhi")
+        .replace(/^con\s+chuot\s+nhat$/i, "con chuot nhat thieu nhi");
+    }
+
+    function setListening(isListening) {
+      if (isListening) {
+        micButton.classList.add("listening");
+      } else {
+        micButton.classList.remove("listening");
+      }
+    }
+
+    function getYoutubeUrls(query) {
+      const encoded = encodeURIComponent(query);
+      const webUrl = "https://www.youtube.com/results?search_query=" + encoded;
+      const ua = navigator.userAgent || "";
+      const isIOS = /iPad|iPhone|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const isAndroid = /Android/i.test(ua);
+
+      if (isIOS) {
+        return {
+          appUrl: "youtube://www.youtube.com/results?search_query=" + encoded,
+          webUrl
+        };
+      }
+
+      if (isAndroid) {
+        return {
+          appUrl: "vnd.youtube://results?search_query=" + encoded,
+          webUrl
+        };
+      }
+
+      return { appUrl: webUrl, webUrl };
+    }
+
+    function openYoutube(rawQuery) {
+      const query = normalizeVietnamese(rawQuery || queryInput.value);
+      if (!query) {
+        queryInput.focus();
+        return;
+      }
+
+      queryInput.value = query;
+
+      const { appUrl, webUrl } = getYoutubeUrls(query);
+      if (appUrl === webUrl) {
+        window.location.href = webUrl;
+        return;
+      }
+
+      const openedAt = Date.now();
+      window.location.href = appUrl;
+      window.setTimeout(() => {
+        if (document.visibilityState !== "hidden" && Date.now() - openedAt < 2500) {
+          window.location.href = webUrl;
+        }
+      }, 1000);
+    }
+
+    function setupSpeech() {
+      if (!SpeechRecognition) {
+        micButton.disabled = true;
+        micButton.style.filter = "grayscale(1)";
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.lang = "vi-VN";
+      recognition.interimResults = true;
+      recognition.continuous = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onstart = () => {
+        listening = true;
+        setListening(true);
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0].transcript)
+          .join(" ");
+        queryInput.value = normalizeVietnamese(transcript);
+
+        if (event.results[event.results.length - 1].isFinal) {
+          window.setTimeout(() => openYoutube(queryInput.value), 250);
+        }
+      };
+
+      recognition.onerror = () => {
+        setListening(false);
+      };
+
+      recognition.onend = () => {
+        listening = false;
+        setListening(false);
+      };
+    }
+
+    function updateClock() {
+      const now = new Date();
+      timeText.textContent = new Intl.DateTimeFormat("vi-VN", {
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(now);
+      dateText.textContent = new Intl.DateTimeFormat("vi-VN", {
+        weekday: "short",
+        day: "2-digit",
+        month: "2-digit"
+      }).format(now);
+    }
+
+    document.querySelectorAll(".tile").forEach((button) => {
+      button.addEventListener("click", () => {
+        navigator.vibrate?.(40);
+        openYoutube(button.dataset.query);
+      });
+    });
+
+    goButton.addEventListener("click", () => {
+      navigator.vibrate?.(40);
+      openYoutube(queryInput.value);
+    });
+
+    micButton.addEventListener("click", () => {
+      if (!recognition || listening) return;
+      try {
+        recognition.start();
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    queryInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        openYoutube();
+      }
+    });
+
+    setupSpeech();
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+</body></html>
