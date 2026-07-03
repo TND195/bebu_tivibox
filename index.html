@@ -300,19 +300,130 @@
       flex-shrink: 0;
     }
   }
+
+  /* Xoay ngang iPhone 7: cao ~375px, rộng ~667px */
+  @media (max-height: 500px) {
+    .app {
+      justify-content: flex-start;
+      padding: 6px 10px;
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+      padding-bottom: max(6px, env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      flex-direction: row !important;
+      align-items: center;
+      padding: 6px 10px;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+
+    .brand {
+      flex: 1;
+      min-width: 0;
+      gap: 8px;
+    }
+
+    .topbar .avatar img {
+      width: 40px;
+      height: 40px;
+      border-width: 2px;
+    }
+
+    .topbar h1 {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .topbar .subtitle {
+      display: none;
+    }
+
+    .topbar .clock {
+      flex-shrink: 0;
+      padding: 4px 10px;
+      min-width: auto;
+    }
+
+    .topbar .time {
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .topbar .date {
+      font-size: 10px;
+      line-height: 14px;
+    }
+
+    .search-panel {
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      border-radius: 1rem;
+      border-width: 2px;
+    }
+
+    .search-row {
+      flex-direction: row !important;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-panel input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 14px;
+      font-size: 15px;
+      line-height: 20px;
+      border-width: 2px;
+    }
+
+    .search-row .button-group {
+      flex-shrink: 0;
+      gap: 8px;
+    }
+
+    .search-panel .big-button {
+      width: 48px;
+      height: 48px;
+      border-width: 2px;
+    }
+
+    .search-panel .big-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .shortcuts {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .shortcut-tile {
+      padding: 6px 4px;
+      border-radius: 0.75rem;
+      border-width: 2px;
+      min-height: 36px;
+    }
+
+    .shortcut-tile span {
+      font-size: 11px;
+      line-height: 14px;
+    }
+  }
 </style>
 </head>
 <body class="font-body-sm text-on-background m-0 p-0 overflow-x-hidden min-h-screen relative">
 <div class="fixed inset-0 -z-10 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLu4zkn7Vv1umjDxscie0MpaLsply7EeL0XqpIrtZCfTZNwlyyomgksDdC22QyVmp3ZJBQlk1kWXyoY5UH39TWn761HzqRFflylMrUwboz7npnEM-GBjlrjnBxIrzwSBzUAKkuj0jkqeE9AlX0A42-0JFb2VFvrsh-cOne2NGuI_ZyxxT0Q9slHWh-B-veUeEl6r3ok24SR4V4RAMUINYLmWjIRc2c9i4tt2AskL1Rc1-SKaFEAGxjr0mvUe');"></div>
 <main class="app min-h-screen min-h-[100dvh] flex flex-col items-center justify-center overflow-y-auto p-4 md:p-8 xl:px-16 xl:py-10 bg-black/10 backdrop-blur-sm">
-<header class="topbar w-full max-w-5xl xl:max-w-[1400px] flex flex-col max-[414px]:flex-row md:flex-row justify-between items-center gap-4 xl:gap-8 bg-surface-container-lowest/90 backdrop-blur-md p-4 md:p-6 xl:p-8 rounded-xl shadow-xl mb-6 md:mb-10 xl:mb-8">
+<header class="topbar w-full max-w-5xl xl:max-w-[1400px] flex flex-col max-[414px]:flex-row max-h-[500px]:flex-row md:flex-row justify-between items-center gap-4 max-h-[500px]:gap-2 xl:gap-8 bg-surface-container-lowest/90 backdrop-blur-md p-4 max-h-[500px]:p-2 md:p-6 xl:p-8 rounded-xl shadow-xl mb-6 max-h-[500px]:mb-2 md:mb-10 xl:mb-8">
 <div class="brand flex items-center gap-3 max-[414px]:gap-2 md:gap-4 xl:gap-6 min-w-0">
 <div aria-hidden="true" class="avatar shrink-0">
 <img alt="Bé bự" class="w-16 h-16 md:w-24 md:h-24 xl:w-28 xl:h-28 object-cover rounded-full border-4 border-primary-container shadow-md" src="https://i.ibb.co/XZSR1YkW/2a-Obo-QXke8-E9-Lm3-Msag11-B85m-Sqtd-Szxk-Pdoi-Ghs.jpg"/>
 </div>
 <div>
 <h1 class="font-display-lg-mobile md:font-display-lg xl:font-display-lg text-display-lg-mobile md:text-display-lg xl:text-display-xl text-primary drop-shadow-sm max-[414px]:text-[20px] max-[414px]:leading-6">Tivi của bé bự</h1>
-<p class="subtitle font-body-sm md:font-body-lg xl:text-[22px] xl:leading-8 text-body-sm md:text-body-lg text-on-surface-variant max-[414px]:text-[13px] max-[414px]:leading-[18px]">Bấm nhanh, nói nhanh, mở YouTube liền.</p>
+<p class="subtitle font-body-sm md:font-body-lg xl:text-[22px] xl:leading-8 text-body-sm md:text-body-lg text-on-surface-variant max-[414px]:text-[13px] max-[414px]:leading-[18px] max-h-[500px]:hidden">Bấm nhanh, nói nhanh, mở YouTube liền.</p>
 </div>
 </div>
 <div aria-label="Đồng hồ" class="clock flex flex-col items-center md:items-end bg-tertiary-container/80 px-6 py-3 xl:px-8 xl:py-4 rounded-xl shadow-inner min-w-[120px] xl:min-w-[160px]">
@@ -321,9 +432,9 @@
 </div>
 </header>
 <section aria-label="Tìm kiếm YouTube" class="search-panel w-full max-w-4xl xl:max-w-[1400px] bg-surface-container-lowest/95 backdrop-blur-md p-6 md:p-8 xl:p-10 rounded-[2rem] md:rounded-xl shadow-2xl mb-8 md:mb-12 xl:mb-8 border-4 border-primary-container/30">
-<div class="search-row flex flex-col md:flex-row items-center gap-4 md:gap-6 xl:gap-8">
-<input aria-label="Từ khóa tìm kiếm YouTube" autocomplete="off" class="flex-1 w-full bg-surface-container-low border-4 border-outline-variant focus:border-primary-container focus:ring-0 rounded-full px-6 py-4 md:py-6 xl:py-7 xl:px-8 font-headline-md xl:font-headline-xl text-headline-md xl:text-headline-xl text-on-surface placeholder:text-outline shadow-inner transition-colors" id="query" inputmode="search" type="search" value="nhạc thiếu nhi vui nhộn"/>
-<div class="flex gap-4 xl:gap-6">
+<div class="search-row flex flex-col max-h-[500px]:flex-row md:flex-row items-center gap-4 max-h-[500px]:gap-2 md:gap-6 xl:gap-8">
+<input aria-label="Từ khóa tìm kiếm YouTube" autocomplete="off" class="flex-1 w-full min-w-0 bg-surface-container-low border-4 border-outline-variant focus:border-primary-container focus:ring-0 rounded-full px-6 py-4 md:py-6 xl:py-7 xl:px-8 font-headline-md xl:font-headline-xl text-headline-md xl:text-headline-xl text-on-surface placeholder:text-outline shadow-inner transition-colors" id="query" inputmode="search" type="search" value="nhạc thiếu nhi vui nhộn"/>
+<div class="button-group flex gap-4 max-h-[500px]:gap-2 xl:gap-6 shrink-0">
 <button aria-label="Tìm bằng giọng nói" class="big-button mic w-20 h-20 md:w-24 md:h-24 xl:w-32 xl:h-32 rounded-full bg-tertiary-container hover:bg-tertiary-fixed transition-transform transform hover:scale-105 active:scale-95 shadow-lg border-4 border-white flex items-center justify-center shrink-0" id="micButton" type="button">
 <svg aria-hidden="true" class="w-10 h-10 md:w-12 md:h-12 xl:w-16 xl:h-16 text-tertiary drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
 <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z"/>
