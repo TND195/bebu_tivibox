@@ -177,25 +177,142 @@
     }
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   @media (min-width: 1280px) {
     .shortcut-tile span {
       font-size: 20px;
       line-height: 28px;
     }
   }
+
+  /* iPhone 7 / SE / màn hình nhỏ (375×667 và tương đương) */
+  @media (max-width: 414px) {
+    .app {
+      justify-content: flex-start;
+      padding: 8px;
+      padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    .topbar {
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      gap: 8px;
+      border-radius: 1rem;
+    }
+
+    .topbar .avatar img {
+      width: 48px;
+      height: 48px;
+      border-width: 3px;
+    }
+
+    .topbar h1 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .topbar .subtitle {
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .topbar .clock {
+      padding: 6px 12px;
+      min-width: 96px;
+    }
+
+    .topbar .time {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .topbar .date {
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    .search-panel {
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 1.25rem;
+      border-width: 3px;
+    }
+
+    .search-panel input {
+      padding: 10px 16px;
+      font-size: 16px;
+      line-height: 22px;
+      border-width: 3px;
+    }
+
+    .search-panel .big-button {
+      width: 56px;
+      height: 56px;
+      border-width: 3px;
+    }
+
+    .search-panel .big-button svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .shortcuts {
+      gap: 8px;
+    }
+
+    .shortcut-tile {
+      padding: 10px 8px;
+      border-radius: 1rem;
+      border-width: 3px;
+      min-height: 52px;
+    }
+
+    .shortcut-tile span {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  @media (max-width: 414px) and (max-height: 700px) {
+    .brand {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .topbar {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .topbar .clock {
+      flex-shrink: 0;
+    }
+  }
 </style>
 </head>
 <body class="font-body-sm text-on-background m-0 p-0 overflow-x-hidden min-h-screen relative">
 <div class="fixed inset-0 -z-10 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLu4zkn7Vv1umjDxscie0MpaLsply7EeL0XqpIrtZCfTZNwlyyomgksDdC22QyVmp3ZJBQlk1kWXyoY5UH39TWn761HzqRFflylMrUwboz7npnEM-GBjlrjnBxIrzwSBzUAKkuj0jkqeE9AlX0A42-0JFb2VFvrsh-cOne2NGuI_ZyxxT0Q9slHWh-B-veUeEl6r3ok24SR4V4RAMUINYLmWjIRc2c9i4tt2AskL1Rc1-SKaFEAGxjr0mvUe');"></div>
-<main class="app min-h-screen min-h-[100dvh] flex flex-col items-center justify-center p-4 md:p-8 xl:px-16 xl:py-10 bg-black/10 backdrop-blur-sm">
-<header class="topbar w-full max-w-5xl xl:max-w-[1400px] flex flex-col md:flex-row justify-between items-center gap-4 xl:gap-8 bg-surface-container-lowest/90 backdrop-blur-md p-4 md:p-6 xl:p-8 rounded-xl shadow-xl mb-6 md:mb-10 xl:mb-8">
-<div class="brand flex items-center gap-4 xl:gap-6">
+<main class="app min-h-screen min-h-[100dvh] flex flex-col items-center justify-center overflow-y-auto p-4 md:p-8 xl:px-16 xl:py-10 bg-black/10 backdrop-blur-sm">
+<header class="topbar w-full max-w-5xl xl:max-w-[1400px] flex flex-col max-[414px]:flex-row md:flex-row justify-between items-center gap-4 xl:gap-8 bg-surface-container-lowest/90 backdrop-blur-md p-4 md:p-6 xl:p-8 rounded-xl shadow-xl mb-6 md:mb-10 xl:mb-8">
+<div class="brand flex items-center gap-3 max-[414px]:gap-2 md:gap-4 xl:gap-6 min-w-0">
 <div aria-hidden="true" class="avatar shrink-0">
 <img alt="Bé bự" class="w-16 h-16 md:w-24 md:h-24 xl:w-28 xl:h-28 object-cover rounded-full border-4 border-primary-container shadow-md" src="https://i.ibb.co/XZSR1YkW/2a-Obo-QXke8-E9-Lm3-Msag11-B85m-Sqtd-Szxk-Pdoi-Ghs.jpg"/>
 </div>
 <div>
-<h1 class="font-display-lg-mobile md:font-display-lg xl:font-display-lg text-display-lg-mobile md:text-display-lg xl:text-display-xl text-primary drop-shadow-sm">Tivi của bé bự</h1>
-<p class="subtitle font-body-sm md:font-body-lg xl:text-[22px] xl:leading-8 text-body-sm md:text-body-lg text-on-surface-variant">Bấm nhanh, nói nhanh, mở YouTube liền.</p>
+<h1 class="font-display-lg-mobile md:font-display-lg xl:font-display-lg text-display-lg-mobile md:text-display-lg xl:text-display-xl text-primary drop-shadow-sm max-[414px]:text-[20px] max-[414px]:leading-6">Tivi của bé bự</h1>
+<p class="subtitle font-body-sm md:font-body-lg xl:text-[22px] xl:leading-8 text-body-sm md:text-body-lg text-on-surface-variant max-[414px]:text-[13px] max-[414px]:leading-[18px]">Bấm nhanh, nói nhanh, mở YouTube liền.</p>
 </div>
 </div>
 <div aria-label="Đồng hồ" class="clock flex flex-col items-center md:items-end bg-tertiary-container/80 px-6 py-3 xl:px-8 xl:py-4 rounded-xl shadow-inner min-w-[120px] xl:min-w-[160px]">
