@@ -416,11 +416,16 @@
     position: fixed;
     right: max(16px, env(safe-area-inset-right));
     bottom: max(16px, env(safe-area-inset-bottom));
-    z-index: 50;
+    z-index: 60;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: flex-end;
+    pointer-events: none;
+  }
+
+  .control-stack > * {
+    pointer-events: auto;
   }
 
   .fab-toggle {
@@ -478,19 +483,26 @@
   }
 
   .fx-menu {
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + 10px);
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: calc(16px + env(safe-area-inset-bottom) + 84px);
+    z-index: 70;
     width: min(280px, calc(100vw - 24px));
+    max-height: min(420px, calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 84px));
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 12px;
     border-radius: 1.25rem;
     border: 4px solid #fff;
-    background: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-    transform-origin: bottom right;
+    pointer-events: auto;
+    touch-action: manipulation;
   }
 
   .fx-menu[hidden] {
@@ -526,6 +538,11 @@
     font-size: 13px;
     line-height: 1.2;
     transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+    pointer-events: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 1;
   }
 
   .fx-option .fx-option-emoji {
@@ -576,7 +593,10 @@
     }
 
     .fx-menu {
+      right: max(10px, env(safe-area-inset-right));
+      bottom: calc(10px + env(safe-area-inset-bottom) + 68px);
       width: min(240px, calc(100vw - 20px));
+      max-height: min(360px, calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 68px));
       padding: 10px;
       gap: 6px;
     }
@@ -584,6 +604,51 @@
     .fx-option {
       min-height: 64px;
       font-size: 12px;
+    }
+  }
+
+  /* Xoay ngang: menu gọn, nằm giữa, luôn chọn được */
+  @media (max-height: 500px) {
+    .control-stack {
+      right: max(10px, env(safe-area-inset-right));
+      bottom: max(8px, env(safe-area-inset-bottom));
+      gap: 8px;
+      z-index: 60;
+    }
+
+    .fab-toggle {
+      width: 48px;
+      height: 48px;
+      font-size: 1.25rem;
+    }
+
+    .fab-toggle svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .fx-menu {
+      left: 50%;
+      right: auto;
+      top: 50%;
+      bottom: auto;
+      transform: translate(-50%, -50%);
+      width: min(520px, calc(100vw - 24px));
+      max-height: calc(100dvh - 16px);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 10px;
+      gap: 6px;
+      z-index: 70;
+    }
+
+    .fx-option {
+      min-height: 52px;
+      padding: 6px 4px;
+      font-size: 11px;
+    }
+
+    .fx-option .fx-option-emoji {
+      font-size: 1.25rem;
     }
   }
 
@@ -827,21 +892,20 @@
     cursor: pointer;
   }
 
+  .media-player-overlay,
+  .media-player-controls {
+    display: none !important;
+  }
+
   .media-player-overlay {
     position: absolute;
     inset: 0;
-    display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
     background: radial-gradient(circle, rgba(0, 0, 0, 0.2), transparent 55%);
     opacity: 0;
     transition: opacity 0.2s ease;
-  }
-
-  .media-player.is-paused .media-player-overlay,
-  .media-player.controls-visible .media-player-overlay {
-    opacity: 1;
   }
 
   .media-play-big {
@@ -890,13 +954,6 @@
     transform: translateY(8px);
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .media-player.is-paused .media-player-controls,
-  .media-player.controls-visible .media-player-controls {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
   }
 
   .media-ctrl-btn {
@@ -1137,7 +1194,7 @@
 <div class="media-stage" data-type="image" id="mediaStage">
 <img alt="Ảnh đã chọn" hidden id="mediaImage"/>
 <div class="media-player is-paused" id="mediaPlayer" hidden>
-<video playsinline preload="metadata" id="mediaVideo"></video>
+<video autoplay loop playsinline preload="auto" id="mediaVideo"></video>
 <div class="media-player-overlay">
 <button aria-label="Phát / tạm dừng" class="media-play-big" id="mediaPlayBig" type="button">
 <svg aria-hidden="true" class="icon-play" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l11.14-6.86c.65-.4.65-1.28 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z"/></svg>
@@ -1302,6 +1359,7 @@
     }
 
     effectsToggle.addEventListener("click", (event) => {
+      event.preventDefault();
       event.stopPropagation();
       navigator.vibrate?.(30);
       setFxMenuOpen(!fxMenuOpen);
@@ -1310,13 +1368,15 @@
     fxMenu.addEventListener("click", (event) => {
       const option = event.target.closest(".fx-option");
       if (!option) return;
+      event.preventDefault();
+      event.stopPropagation();
       navigator.vibrate?.(30);
       setEffect(option.dataset.fx);
     });
 
-    document.addEventListener("click", (event) => {
+    document.addEventListener("pointerdown", (event) => {
       if (!fxMenuOpen) return;
-      if (event.target.closest(".control-stack")) return;
+      if (event.target.closest("#fxMenu, #effectsToggle")) return;
       setFxMenuOpen(false);
     });
 
@@ -1600,13 +1660,21 @@
       if (isVideo) {
         mediaImage.hidden = true;
         mediaPlayer.hidden = false;
+        mediaVideo.loop = true;
         mediaVideo.src = mediaObjectUrl;
         pauseMusicForMedia();
-        showMediaControls(true);
-        mediaVideo.play().catch(() => {
-          setMediaPlayingUi(false);
-          showMediaControls(false);
-        });
+        const playVideo = () => {
+          mediaVideo.play().then(() => {
+            setMediaPlayingUi(true);
+          }).catch(() => {
+            setMediaPlayingUi(false);
+          });
+        };
+        if (mediaVideo.readyState >= 2) {
+          playVideo();
+        } else {
+          mediaVideo.addEventListener("loadeddata", playVideo, { once: true });
+        }
       } else {
         mediaPlayer.hidden = true;
         mediaVideo.pause();
